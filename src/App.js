@@ -1,25 +1,20 @@
 import logo from './logo.svg';
+import { withAuthenticator, useAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 import './App.css';
+import { Amplify, Auth } from 'aws-amplify';
+import aws_exports from './aws-exports';
+Amplify.configure(aws_exports);
 
 function App() {
+  const {signOut} = useAuthenticator();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h3>Hello World</h3>
+      
+      <button onClick={signOut}>Log Out</button>
     </div>
   );
 }
 
-export default App;
+export default withAuthenticator(App);
